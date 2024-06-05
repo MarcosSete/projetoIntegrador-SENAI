@@ -261,7 +261,7 @@ public class Municipio {
     @Override
     public String toString() {
         return "codigoIBGE: "+codigoIBGE + " , " + "municipio: "+municipio + " , " +"microrregiao: "+microrregiao + " , " +"estado: "+ estado + " , " + "regiaoGeografica: "+regiaoGeografica + " , " +
-                "area: "+area + " , " +"populacao: "+ populacao + " , " +"domicilios: "+ domicilios + " , " +"pibTotal: "+ pibTotal + " , " + "idh: "+idh + " , " + "rendaMedia"+rendaMedia + " , " +
+                "area: "+area + " , " +"populacao: "+ populacao + " , " +"domicilios: "+ domicilios + " , " +"pibTotal: "+ pibTotal + " , " + "idh: "+idh + " , " + "rendaMedia: "+rendaMedia + " , " +
                 "rendaNominal: "+rendaNominal + " , " + "peaDia: "+peaDia + " , " +"idhEducacao: "+ idhEducacao + " , " + "idhLongevidade: "+idhLongevidade + " , " +
                 "densidadeDemografica: "+densidadeDemografica + " , " + "pibPerCapita: "+pibPerCapita + " , " + "classificacaoIDH: "+classificacaoIDH + " , " +
                 "classificacaoIDHEducacao: "+classificacaoIDHEducacao + " , " + "classificacaoIDHLongevidade: "+ classificacaoIDHLongevidade + " , " +"ultimaAtualizacao: "+ ultimaAtualizacao;
