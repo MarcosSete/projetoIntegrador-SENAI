@@ -50,23 +50,28 @@ public class Teste {
                     case 2:
                         System.out.println("Digite os dados do novo município (separados por vírgula):");
                     String[] dados = scanner.nextLine().split(",");
-                    String codigoIBGENovo = dados[0];
+                    try{
+                    String codigoIBGENovo = dados[0].trim();
                     if (municipioService.buscarMunicipioPorCodigo(codigoIBGENovo) != null) {
                         System.out.println("Código IBGE já existente. Não é possível adicionar o município.");
                         break;
                     }
-                    Municipio novoMunicipio = new Municipio(dados[0], dados[1], dados[2], dados[3], dados[4],
-                            Double.parseDouble(dados[5]), Double.parseDouble(dados[6]), Double.parseDouble(dados[7]),
-                            Double.parseDouble(dados[8]), Double.parseDouble(dados[9]), Double.parseDouble(dados[10]),
-                            Double.parseDouble(dados[11]), Double.parseDouble(dados[12]), Double.parseDouble(dados[13]),
-                            Double.parseDouble(dados[14]));
+                    Municipio novoMunicipio = new Municipio(dados[0].trim(), dados[1].trim(), dados[2].trim(), dados[3].trim(), dados[4].trim(),
+                            Double.parseDouble(dados[5].trim()), Double.parseDouble(dados[6].trim()), Double.parseDouble(dados[7].trim()),
+                            Double.parseDouble(dados[8].trim()), Double.parseDouble(dados[9].trim()), Double.parseDouble(dados[10].trim()),
+                            Double.parseDouble(dados[11].trim()), Double.parseDouble(dados[12].trim()), Double.parseDouble(dados[13].trim()),
+                            Double.parseDouble(dados[14].trim()));
                     municipioService.adicionarMunicipio(novoMunicipio);
                     System.out.println("Município adicionado com sucesso.");
+                    }catch(ArrayIndexOutOfBoundsException | NumberFormatException e){ 
+                         System.out.println("Erro ao adicionar o município: Dados inválidos.");
+                
+                    }
                     break;
 
                     case 3:
                         System.out.println("Digite o código IBGE do município a ser atualizado:");
-                        String codigoIBGE = scanner.nextLine();
+                        String codigoIBGE = scanner.nextLine().trim();
                         Municipio municipioExistente = municipioService.buscarMunicipioPorCodigo(codigoIBGE);
                         if (municipioExistente == null) {
                             System.out.println("Código IBGE não encontrado. Por favor, tente novamente.");
@@ -74,19 +79,25 @@ public class Teste {
                         }
                         System.out.println("Digite os novos dados do município (separados por vírgula):");
                         String[] novosDados = scanner.nextLine().split(",");
-                        Municipio municipioAtualizado = new Municipio(novosDados[0], novosDados[1], novosDados[2], novosDados[3], novosDados[4],
-                                Double.parseDouble(novosDados[5]), Double.parseDouble(novosDados[6]), Double.parseDouble(novosDados[7]),
-                                Double.parseDouble(novosDados[8]), Double.parseDouble(novosDados[9]), Double.parseDouble(novosDados[10]),
-                                Double.parseDouble(novosDados[11]), Double.parseDouble(novosDados[12]), Double.parseDouble(novosDados[13]),
-                                Double.parseDouble(novosDados[14]));
+                        try{
+                        Municipio municipioAtualizado = new Municipio(
+                                novosDados[0].trim(), novosDados[1].trim(), novosDados[2].trim(), novosDados[3].trim(), novosDados[4].trim(),
+                                Double.parseDouble(novosDados[5].trim()), Double.parseDouble(novosDados[6].trim()), Double.parseDouble(novosDados[7].trim()),
+                                Double.parseDouble(novosDados[8].trim()), Double.parseDouble(novosDados[9].trim()), Double.parseDouble(novosDados[10].trim()),
+                                Double.parseDouble(novosDados[11].trim()), Double.parseDouble(novosDados[12].trim()), Double.parseDouble(novosDados[13].trim()),
+                                Double.parseDouble(novosDados[14].trim()));
                         municipioService.atualizarMunicipio(codigoIBGE, municipioAtualizado);
                         System.out.println("Município atualizado: " + municipioService.listarMunicipios().stream()
                                 .filter(m -> m.getCodigoIBGE().equals(codigoIBGE)).findFirst().orElse(null).formatarInfo());
+                        }catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
+                            System.out.println("Erro ao atualizar o município: Dados inválidos.");
+                            
+                        }
                         break;
 
                     case 4:
                         System.out.println("Digite o código IBGE do município a ser excluído:");
-                        String codigoExclusao = scanner.nextLine();
+                        String codigoExclusao = scanner.nextLine().trim();
                         Municipio municipioParaExcluir = municipioService.buscarMunicipioPorCodigo(codigoExclusao);
                         if (municipioParaExcluir == null) {
                             System.out.println("Código IBGE não encontrado. Por favor, tente novamente.");
